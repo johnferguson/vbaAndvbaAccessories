@@ -10,9 +10,14 @@ Sub chooseFolder()
     Debug.Print "Chosen Folder: " & chosenFolder
     
     If chosenFolder <> "" Then
-        ' *********************
-        ' put your code in here
-        ' *********************
+        Dim currentFile As String
+
+        currentFile = Dir(chosenFolder & "\*")
+        Do While Len(currentFile) > 0
+            Call copyPNG(chosenFolder & "\" & currentFile)
+            
+            currentFile = Dir
+        Loop
     End If
 End Sub
 
