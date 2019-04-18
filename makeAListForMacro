@@ -1,0 +1,24 @@
+'this makes a list of lists for a mainframe macro
+Sub list()
+    Set lWS = ThisWorkbook.Sheets("Sheet2")
+    Set ws = ActiveSheet
+    l = 0
+    y = 3
+    
+    currStr = ""
+    Do While ws.Cells(y, 1).Value <> ""
+        If Len(currStr) > 1 Then
+            currStr = currStr + " "
+        End If
+        currStr = currStr + ws.Cells(y, 4).Value & " " & ws.Cells(y, 5).Value & " " & ws.Cells(y, 11).Value
+        
+        If Len(currStr) > 2500 Then
+            lWS.Cells(l + 1, 1).Value = "pnList[" & l & "] = '" & currStr & "'"
+            currStr = ""
+            l = l + 1
+        End If
+        
+        y = y + 1
+    Loop
+    
+End Sub
